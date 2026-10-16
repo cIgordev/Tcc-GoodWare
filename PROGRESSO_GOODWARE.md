@@ -35,11 +35,17 @@ Mantenha GOODWARE_MIGRATE=false. JAR antigo incompatível com novas políticas.
 7. Publicação gratuita no Render autorizada posteriormente; domínio próprio e contratação paga continuam fora do escopo.
 
 ## Continuação da implantação — 16/10/2026 UTC
-- Integrações Render e GitHub disponíveis. Repositório cIgordev/Tcc-GoodWare verificado: main contém somente README.md; código da aplicação ainda não enviado.
-- Workspace Render My workspace confirmado explicitamente pelo usuário. Consulta inicial não retornou serviços existentes.
-- Dockerfile atualizado para compilar o fonte Java 21 e executar testes Maven; perfil render usa PORT, origem pública automática e cookie Secure. Histórico Git anterior será preservado.
-- Próximas etapas: confirmar workspace, preparar build Docker a partir do fonte e porta PORT, enviar código sem segredos, criar serviço free e configurar origem HTTPS.
-- Senha JDBC e certificado TLS precisam ser configurados com segurança no ambiente de hospedagem; não solicitar senha no chat. Implantação e validação remota ainda não realizadas.
+- Autorização explícita recebida para publicar o código atual no repositório público cIgordev/Tcc-GoodWare e implantar no Render gratuito. Bloqueio anterior de aprovação resolvido.
+- Código atual publicado em main no commit 4909b9dd4fd81904ce31901ca3923be98de199a7; 133 arquivos. O commit inicial foi preservado como pai.
+- Workspace My workspace confirmado. Serviço goodware criado no plano free, região Ohio, ID srv-db8mpvrbc2fs73bebe2g.
+- URL reservada: https://goodware-fstf.onrender.com — funcionamento público ainda não validado.
+- Painel: https://dashboard.render.com/web/srv-db8mpvrbc2fs73bebe2g
+- Docker compila fonte Java 21 e executa testes. Primeiro deploy dep-db8mq0jbc2fs73bebho0: Maven BUILD SUCCESS, 88 testes, zero falhas/erros/ignorados. Nove verificações DOM/autenticação também passaram localmente.
+- Perfil render usa PORT, RENDER_EXTERNAL_URL, cookie Secure e processamento nativo de proxy; TLS JDBC permanece verify-full. Migrações automáticas desabilitadas.
+- Consulta remota confirmou goodware_app com LOGIN, sem SUPERUSER/BYPASSRLS e membro de goodware_backend. Nenhuma credencial lida ou alterada.
+- BLOQUEIO REAL: configurar GOODWARE_DB_PASSWORD no painel Render e adicionar Secret File prod-ca-2021.crt. Não enviar senha pelo chat. Valores restantes já configurados.
+- Após configurar: verificar inicialização, HTTPS, login, upload, persistência, isolamento entre contas e URLs de confirmação do Supabase. A aprovação dos testes de build não substitui essa validação remota.
+- Guia operacional: docs/RENDER.md. Nenhum serviço pago, novo banco ou domínio contratado.
 
 ## Limites documentados
 Sessões em memória, expiração máxima 30 minutos sem refresh automático; uma

@@ -34,3 +34,19 @@ persistido continua no Supabase. Nenhum disco pago ou novo banco é necessário.
 Referências: https://render.com/docs/environment-variables,
 https://render.com/docs/web-services,
 https://docs.spring.io/spring-boot/3.5/how-to/webserver.html
+
+## Serviço criado
+
+Painel: https://dashboard.render.com/web/srv-db8mpvrbc2fs73bebe2g
+
+Endereço reservado: https://goodware-fstf.onrender.com
+
+O primeiro build passou os 88 testes Java. Inicialização e testes públicos
+aguardam senha e certificado no painel.
+
+No painel, abra Environment. Em Environment Variables, adicione
+GOODWARE_DB_PASSWORD com a senha do usuário goodware_app e salve (Save only,
+se disponível). Em Secret Files, adicione prod-ca-2021.crt e cole o conteúdo
+integral do certificado CA do projeto, incluindo BEGIN/END CERTIFICATE.
+Salve; a atualização do Secret File dispara implantação. Não envie a senha
+pelo chat nem a armazene neste repositório.
