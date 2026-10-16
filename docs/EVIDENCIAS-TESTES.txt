@@ -1,0 +1,34 @@
+[INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.201 s -- in br.com.goodware.engine.SafeZipReaderTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.265 s -- in br.com.goodware.engine.SignatureServiceTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.125 s -- in br.com.goodware.engine.RuleModuleTest
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.065 s -- in br.com.goodware.engine.DependencyModuleTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.072 s -- in br.com.goodware.AnalysisApiTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.242 s -- in br.com.goodware.GoodwareBackendApplicationTests
+[INFO] Tests run: 71, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+[INFO] Total time:  6.545 s
+
+DOM + HTTP final (porta isolada 18101):
+{
+  "passed": 11,
+  "results": [
+    "Landing original: scripts e navegação carregados",
+    "Acesso local sem autenticação simulada",
+    "Upload real, 5 achados, 4 arquivos, exportação JSON e revisão por aba; segredo mascarado",
+    "Consulta por hash real",
+    "Painel alimentado pela API",
+    "Resultado sem achados mantém ressalva de segurança",
+    "invalido.zip: erro real sem resultado fictício",
+    "zip-slip-rejeitado.zip: erro real sem resultado fictício",
+    "Conteúdo hostil preservado como texto no DOM",
+    "Relatório excluído tratado na interface",
+    "Nenhum erro JavaScript de execução no DOM"
+  ]
+}
+
+
+node --check: 7 scripts aprovados.
+Referências locais HTML: aprovadas.
+Playwright/visual: não executado; socket do Chromium negado pelo ambiente.
+
+Após testes: reempacotamento alterou somente BOOT-INF/classes/static/README.md. Classes, regras e páginas idênticas em bytes ao JAR testado.

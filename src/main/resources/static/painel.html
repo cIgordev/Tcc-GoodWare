@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GoodWare — Painel</title>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/app-shell.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <script src="js/auth.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <a href="painel.html" class="brand-mark">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="2" y="2" width="7" height="7" rx="1.5" fill="#7B61FF" />
+              <rect x="11" y="2" width="7" height="7" rx="1.5" fill="#7B61FF" fill-opacity=".72" />
+              <rect x="2" y="11" width="7" height="7" rx="1.5" fill="#7B61FF" fill-opacity=".52" />
+              <rect x="11" y="11" width="7" height="7" rx="1.5" fill="#7B61FF" fill-opacity=".9" />
+            </svg>
+          GoodWare
+        </a>
+        <nav class="topbar-nav" aria-label="Navegação principal">
+          <a href="painel.html" aria-current="page">Painel</a>
+          <a href="analisar.html">Nova análise</a>
+        </nav>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="user-menu" id="userMenu">
+          <button class="user-menu-trigger" id="userMenuTrigger" aria-label="Opções da conta" aria-haspopup="true" aria-expanded="false">
+            <span class="user-avatar">Local</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5 L6 8 L9.5 4.5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </button>
+          <div class="user-menu-panel">
+            <a href="login.html">Minha conta</a>
+            <a href="analisar.html">Nova análise</a>
+            <a href="index.html">Página inicial</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1" class="app-main">
+
+      <!-- Cabeçalho do painel -->
+      <section>
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">VISÃO GERAL</div><h1>Painel de análises</h1>
+            <p class="page-intro">Histórico persistente no banco. Os relatórios permanecem disponíveis após reiniciar o servidor.</p>
+          </div>
+          <a class="btn btn-primary" href="analisar.html">Nova análise</a>
+        </div>
+      </section>
+
+      <!-- Resumo -->
+      <section>
+        <div class="section-heading">
+          <h2>Resumo</h2>
+        </div>
+        <div class="stats-grid" id="statsGrid"><!-- preenchido via JS --></div>
+      </section>
+
+      <!-- Análises recentes -->
+      <section>
+        <div class="section-heading">
+          <h2>Análises recentes</h2>
+        </div>
+
+        <div class="analysis-list" id="analysisList" aria-live="polite" aria-busy="true"><!-- preenchido via JS --></div>
+
+        <div class="empty-state" id="emptyState">
+          <h3>Seu primeiro relatório começa aqui.</h3><p>Envie um projeto ZIP para inspecionar arquivos e possíveis riscos.</p><a class="btn btn-primary" href="analisar.html">Analisar um projeto</a>
+        </div>
+      </section>
+
+      <footer class="page-footer">GoodWare · Relatórios privados por conta. A ausência de achados não garante segurança.</footer>
+    </main>
+  </div>
+
+  <script src="js/user-menu.js" defer></script>
+  <script src="js/dashboard.js" defer></script>
+</body>
+</html>

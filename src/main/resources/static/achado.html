@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GoodWare — Relatório</title>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/achado.css" />
+  <script src="js/auth.js" defer></script>
+</head>
+<body class="showcase-bg">
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+  <a class="back-link" id="backLink" href="painel.html">← Voltar ao painel</a>
+
+  <main class="mock-window" id="main" tabindex="-1">
+
+    <div class="mock-titlebar">
+      <a href="painel.html" class="brand-mark">GoodWare</a>
+      <span class="mock-breadcrumb">Carregando relatório…</span>
+      <span class="badge badge-neutral" id="reportStatus">Carregando</span>
+    </div>
+
+    <section class="report-summary" id="reportSummary" aria-live="polite"></section>
+    <details class="report-inventory" id="inventorySection" hidden>
+      <summary>Arquivos analisados e cobertura</summary>
+      <div class="inventory-scroll"><table><thead><tr><th>Arquivo</th><th>Bytes</th><th>Tipo</th><th>Cobertura</th><th>Achados</th></tr></thead><tbody id="fileInventory"></tbody></table></div>
+    </details>
+    <div class="finding-toolbar" id="findingToolbar" hidden>
+      <div><h2>Achados</h2><p id="findingCount" class="text-muted" role="status"></p></div>
+      <div class="finding-filters"><label for="findingSearch">Buscar achado ou arquivo<input id="findingSearch" type="search" placeholder="Título, arquivo ou regra" /></label>
+      <label for="severityFilter">Severidade<select id="severityFilter"><option value="all">Todas</option><option value="critical">Crítica</option><option value="high">Alta</option><option value="medium">Média</option><option value="low">Baixa</option></select></label></div>
+    </div>
+    <div class="mock-body">
+      <aside class="finding-sidebar" id="findingSidebar" aria-label="Lista de achados"><!-- preenchido via JS --></aside>
+      <section class="finding-detail" id="findingDetail" aria-label="Detalhes do achado" tabindex="-1"><!-- preenchido via JS --></section>
+    </div>
+
+  </main>
+
+  <script src="js/achado.js" defer></script>
+</body>
+</html>

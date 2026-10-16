@@ -1,0 +1,128 @@
+{
+  "id": "2a8b9a29-125c-4aaa-906b-71077c22b63d",
+  "name": "projeto-vulneravel.zip",
+  "status": "COMPLETED",
+  "sha256": "2e1e89232c14acfd576bbd493bb546810d52cda5db7727fcef2acc7c4e41cc68",
+  "createdAt": "2026-10-14T11:29:48.277956565Z",
+  "filesAnalyzed": 4,
+  "critical": 1,
+  "high": 3,
+  "medium": 1,
+  "low": 0,
+  "findings": [
+    {
+      "id": "GW-JAVA-EXEC-001-7efe289b28611a3d",
+      "category": "POTENTIAL_VULNERABILITY",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "title": "API de execução de processos",
+      "file": "src/Example.java",
+      "line": 4,
+      "ruleId": "GW-JAVA-EXEC-001",
+      "evidence": "Runtime.getRuntime().exec(input);",
+      "impact": "Entradas externas nos argumentos podem permitir execução de comandos.",
+      "recommendation": "Prefira APIs da linguagem; use executável fixo, lista de argumentos e validação estrita."
+    },
+    {
+      "id": "GW-SECRET-001-b00ab1be62705c26",
+      "category": "POTENTIAL_VULNERABILITY",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "title": "Possível credencial literal",
+      "file": "config.json",
+      "line": 1,
+      "ruleId": "GW-SECRET-001",
+      "evidence": "Atribuição de possível credencial literal [REDACTED]; linha 1",
+      "impact": "Um valor sensível pode estar exposto no projeto.",
+      "recommendation": "Verifique sem divulgar o valor; revogue credenciais reais e use configuração externa."
+    },
+    {
+      "id": "GW-EVAL-001-d069c1134bac2967",
+      "category": "POTENTIAL_VULNERABILITY",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "title": "Avaliação dinâmica de código",
+      "file": "app.js",
+      "line": 2,
+      "ruleId": "GW-EVAL-001",
+      "evidence": "eval(atob(payload));",
+      "impact": "Conteúdo externo pode ser interpretado como código.",
+      "recommendation": "Utilize parsers de dados e não interprete entradas como código."
+    },
+    {
+      "id": "GW-OBFUSCATION-001-3ec346c1cf445ff2",
+      "category": "SUSPICIOUS_INDICATOR",
+      "severity": "MEDIUM",
+      "confidence": "MEDIUM",
+      "title": "Decodificação seguida de avaliação dinâmica",
+      "file": "app.js",
+      "line": 2,
+      "ruleId": "GW-OBFUSCATION-001",
+      "evidence": "eval(atob(payload));",
+      "impact": "A combinação pode ocultar código, mas não comprova malware.",
+      "recommendation": "Revise a origem do conteúdo sem executá-lo."
+    },
+    {
+      "id": "GW-DEP-CVE-2021-44228-ab9a4cdff1b5cff5",
+      "category": "DEPENDENCY_ADVISORY",
+      "severity": "CRITICAL",
+      "confidence": "HIGH",
+      "title": "log4j-core declarado em faixa afetada por CVE-2021-44228",
+      "file": "pom.xml",
+      "line": null,
+      "ruleId": "GW-DEP-CVE-2021-44228",
+      "evidence": "org.apache.logging.log4j:log4j-core:2.14.1; fonte: https://logging.apache.org/security.html; revisão: 2026-10-14",
+      "impact": "O componente declarado está em faixa afetada por Log4Shell. A declaração não comprova presença em execução nem exploração.",
+      "recommendation": "Atualize para uma versão mantida e revise TODOS os avisos atuais do fornecedor. Confirme a versão resolvida no seu ambiente confiável."
+    }
+  ],
+  "files": [
+    {
+      "path": "src/Example.java",
+      "size": 148,
+      "sha256": "c2a9ea5ac20dad59d4db53cb7bebfd46c9046439421eae2a30828856df4c7902",
+      "language": "java",
+      "status": "TEXT_SCANNED",
+      "note": "Regras por extensão e indicadores aplicados; cobertura heurística limitada.",
+      "findings": 1
+    },
+    {
+      "path": "config.json",
+      "size": 40,
+      "sha256": "0e94e23869a04f1c50c7a8edb29b30c8c564370f7ce2460ff3ef81d4d81fb26d",
+      "language": "config",
+      "status": "TEXT_SCANNED",
+      "note": "Regras por extensão e indicadores aplicados; cobertura heurística limitada.",
+      "findings": 1
+    },
+    {
+      "path": "app.js",
+      "size": 69,
+      "sha256": "61e06002ee9af4a9a8a7d466bbb0c5655d8516f2e53b6f25c9ae563b8bd5896c",
+      "language": "javascript",
+      "status": "TEXT_SCANNED",
+      "note": "Regras por extensão e indicadores aplicados; cobertura heurística limitada.",
+      "findings": 2
+    },
+    {
+      "path": "pom.xml",
+      "size": 177,
+      "sha256": "b5adbefd4cf45ecc919894a418fae97c97418e4891bd9ef99b76f8df771a1487",
+      "language": "config",
+      "status": "TEXT_SCANNED",
+      "note": "Regras por extensão e indicadores aplicados; cobertura heurística limitada.",
+      "findings": 1
+    }
+  ],
+  "warnings": [
+    "Nenhum achado não garante segurança. Heurísticas não comprovam exploração ou malware.",
+    "Análise sem execução, sem consulta externa e sem resolver dependências transitivas. ZIPs internos não são abertos.",
+    "Relatórios em memória: até 30 análises por 24 horas; reiniciar remove o histórico.",
+    "Catálogo de ameaças vazio: nenhum hash ou endereço será classificado como ameaça conhecida.",
+    "Dependências: somente declarações explícitas de log4j-core em pom.xml e CVE-2021-44228; não é auditoria completa de componentes."
+  ],
+  "engineVersion": "1.0.0",
+  "catalogVersion": "2026-10-14.empty",
+  "signatureCount": 0,
+  "durationMs": 5
+}

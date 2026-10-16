@@ -1,0 +1,2 @@
+# Formato legado preservado para referência. Não é carregado pelo motor 1.0.
+# Use catalog.json com metadados completos de procedência.

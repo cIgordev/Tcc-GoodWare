@@ -1,0 +1,87 @@
+EVIDÊNCIAS DA REVISÃO VISUAL — 14/10/2026
+
+
+--- java-tests.log ---
+Test run finished after 2204 ms
+[        12 containers found      ]
+[         0 containers skipped    ]
+[        12 containers started    ]
+[         0 containers aborted    ]
+[        12 containers successful ]
+[         0 containers failed     ]
+[        71 tests found           ]
+[         0 tests skipped         ]
+[        71 tests started         ]
+[         0 tests aborted         ]
+[        71 tests successful      ]
+[         0 tests failed          ]
+
+
+
+--- final-browser.log ---
+{
+  "passed": 12,
+  "results": [
+    "Landing original carregada",
+    "Acesso local explícito sem login fictício",
+    "Upload real → 5 achados → 4 arquivos → relatório JSON → revisão local; segredo mascarado",
+    "Consulta por SHA-256 real",
+    "Painel sem dados fictícios",
+    "Arquivo seguro mostra ressalva e zero achados",
+    "Erro real de formato exibido sem resultado simulado",
+    "Zip Slip rejeitado na interface",
+    "Nome/evidência hostis tratados como texto (sem XSS)",
+    "Quatro páginas sem overflow horizontal em 390px",
+    "Relatório excluído tratado como indisponível",
+    "Nenhum erro JavaScript de página"
+  ]
+}
+
+
+--- final-dom.log ---
+DOM: /
+DOM: /login.html
+DOM: /analisar.html
+DOM: /achado.html?id=2a8b9a29-125c-4aaa-906b-71077c22b63d
+DOM: /analisar.html
+DOM: /painel.html
+DOM: /analisar.html
+DOM: /achado.html?id=99bc4b25-5453-448f-b97e-36dba905cddb
+DOM: /analisar.html
+DOM: /analisar.html
+DOM: /analisar.html
+DOM: /achado.html?id=0641d885-f42d-4d63-a61f-44ed38c05f96
+DOM: /achado.html?id=2a8b9a29-125c-4aaa-906b-71077c22b63d
+{
+  "passed": 11,
+  "results": [
+    "Landing original: scripts e navegação carregados",
+    "Acesso local sem autenticação simulada",
+    "Upload real, 5 achados, 4 arquivos, exportação JSON e revisão por aba; segredo mascarado",
+    "Consulta por hash real",
+    "Painel alimentado pela API",
+    "Resultado sem achados mantém ressalva de segurança",
+    "invalido.zip: erro real sem resultado fictício",
+    "zip-slip-rejeitado.zip: erro real sem resultado fictício",
+    "Conteúdo hostil preservado como texto no DOM",
+    "Relatório excluído tratado na interface",
+    "Nenhum erro JavaScript de execução no DOM"
+  ]
+}
+
+
+--- final-visual.log ---
+{
+  "passed": 9,
+  "results": [
+    "Cinco páginas sem overflow/corte em 320px",
+    "Cinco páginas sem overflow/corte em 390px",
+    "Cinco páginas sem overflow/corte em 768px",
+    "Cinco páginas sem overflow/corte em 1440px",
+    "Filtros combinados, estado sem resultados e foco no detalhe",
+    "Abas por teclado, hash inválido acessível e Escape no menu",
+    "Falha HTTP 503 injetada no teste: alerta e nova tentativa",
+    "Exclusão pela interface e confirmação de 404 na API",
+    "Nenhum erro JavaScript de página"
+  ]
+}

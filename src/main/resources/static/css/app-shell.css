@@ -1,0 +1,154 @@
+/* ============================================================
+   GOODWARE — Estrutura compartilhada das telas logadas
+   (painel.html e analisar.html): shell, topbar, menu do usuário
+   e área de conteúdo. Evita duplicar estilos entre páginas.
+   ============================================================ */
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Topbar ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-menu-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: 1px solid transparent;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.user-menu-trigger:hover {
+  border-color: var(--border);
+}
+
+.user-avatar {
+  background: var(--accent-dim);
+  color: var(--accent-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.user-menu-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + var(--space-2));
+  min-width: 180px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  display: none;
+  flex-direction: column;
+  z-index: 20;
+}
+
+.user-menu.is-open .user-menu-panel {
+  display: flex;
+}
+
+.user-menu-panel a {
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text-muted);
+}
+
+.user-menu-panel a:hover {
+  background: var(--panel-alt);
+  color: var(--text);
+}
+
+/* ---------- Conteúdo principal ---------- */
+
+.app-main {
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6) var(--space-8);
+}
+
+.app-main > section + section {
+  margin-top: var(--space-7);
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.section-heading .text-muted {
+  font-size: 0.8125rem;
+}
+
+/* ---------- Navegação da topbar ---------- */
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.topbar-nav {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.topbar-nav a {
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.topbar-nav a:hover {
+  color: var(--text);
+}
+
+.page-intro {
+  color: var(--text-muted);
+}
+
+/* Shared application layout */
+.topbar { min-height:80px; padding:16px max(24px, calc((100vw - 1120px)/2)); background:var(--bg); }
+.topbar-nav a { min-height:44px; display:flex; align-items:center; padding:10px 16px; font-size:var(--text-small); }
+.topbar-nav a[aria-current="page"] { color:var(--accent-strong); background:var(--accent-dim); }
+.user-avatar { width:auto; height:auto; border-radius:6px; padding:6px 10px; font-family:var(--font-sans); font-size:var(--text-small); }
+.user-menu-trigger { min-height:44px; }
+.user-menu-panel a { padding:12px; font-size:var(--text-small); }
+.app-main { max-width:1120px; padding-top:56px; }
+.section-heading { align-items:center; gap:24px; }
+.section-heading .btn { flex-shrink:0; }
+.page-intro { max-width:65ch; margin-top:12px; font-size:1rem; line-height:1.7; }
+.eyebrow + h1 { margin-top:8px; }
+@media(max-width:600px) {
+ .topbar { padding:12px 20px; align-items:flex-start; gap:12px; }
+ .topbar-left { flex-direction:column; align-items:flex-start; gap:12px; }
+ .topbar-nav a { padding:10px 12px; }
+ .app-main { padding:32px 20px; }
+ .section-heading { flex-wrap:wrap; gap:16px; }
+}

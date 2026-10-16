@@ -1,0 +1,30 @@
+import {PGlite} from '@electric-sql/pglite';
+import {readFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const db=new PGlite();let checks=0;
+const ok=s=>{checks++;console.log('PASS '+s);};
+const a='30000000-0000-4000-8000-000000000001',b='30000000-0000-4000-8000-000000000002',id='40000000-0000-4000-8000-000000000001';
+const set=owner=>db.query("SELECT set_config('goodware.owner_id',$1,false)",[owner]);
+try {
+ await db.exec('CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role; CREATE SCHEMA auth; CREATE TABLE auth.users(id uuid PRIMARY KEY);');
+ await db.query('INSERT INTO auth.users VALUES ($1),($2)',[a,b]);
+ for(const file of ['db/migration/V1__persistent_analyses.sql','db/postgres/V2__private_backend_access.sql','db/migration/V3__analysis_owner.sql','db/postgres/V4__owner_rls.sql','db/postgres/V5__restrict_event_trigger_execute.sql'])await db.exec(await readFile('src/main/resources/'+file,'utf8'));
+ ok('All five migrations apply');
+ const insert="INSERT INTO goodware.analyses(id,name,sha256,upload_size,status,created_at,started_at,owner_id) VALUES ($1,'SYNTHETIC',repeat('a',64),1,'RUNNING',now(),now(),$2)";
+ await db.query(insert,['40000000-0000-4000-8000-000000000009',null]);
+ await db.exec('SET ROLE goodware_backend');await set(a);await db.query(insert,[id,a]);
+ await db.query("INSERT INTO goodware.analyzed_files VALUES ($1,'a.java',1,repeat('b',64),'java','TEXT_SCANNED','synthetic')",[id]);
+ await db.query("INSERT INTO goodware.findings(analysis_id,id,category,severity,confidence,title,rule_id,evidence,impact,recommendation) VALUES ($1,'x','POTENTIAL_VULNERABILITY','HIGH','HIGH','synthetic','TEST','','','')",[id]);
+ assert.equal((await db.query('SELECT * FROM goodware.analyses')).rows.length,1);ok('Owner sees own row, legacy hidden');
+ await assert.rejects(db.query('UPDATE goodware.analyses SET owner_id=$1 WHERE id=$2',[b,id]),/row-level security/);ok('Reassignment denied');
+ await set(b);
+ for(const table of ['analyses','analyzed_files','findings'])assert.equal((await db.query('SELECT * FROM goodware.'+table)).rows.length,0);ok('Other owner sees no reports or children');
+ assert.equal((await db.query('DELETE FROM goodware.analyses WHERE id=$1 RETURNING id',[id])).rows.length,0);ok('Other owner cannot delete');
+ await assert.rejects(db.query("INSERT INTO goodware.analyzed_files VALUES ($1,'b.java',1,repeat('b',64),'java','TEXT_SCANNED','synthetic')",[id]),/row-level security/);ok('Other owner cannot insert child');
+ await assert.rejects(db.query(insert,['40000000-0000-4000-8000-000000000002',a]),/row-level security/);ok('Forged owner rejected');
+ await set('');assert.equal((await db.query('SELECT * FROM goodware.analyses')).rows.length,0);ok('Missing identity fails closed');
+ await db.exec('BEGIN');await db.query("SELECT set_config('goodware.owner_id',$1,true)",[a]);assert.equal((await db.query('SELECT * FROM goodware.analyses')).rows.length,1);await db.exec('COMMIT');assert.equal((await db.query('SELECT * FROM goodware.analyses')).rows.length,0);ok('Transaction identity does not leak');
+ await set(a);await db.query('DELETE FROM goodware.analyses WHERE id=$1',[id]);for(const t of ['analyzed_files','findings'])assert.equal((await db.query('SELECT * FROM goodware.'+t)).rows.length,0);ok('Owner delete cascades');
+ await db.exec('RESET ROLE');for(const r of ['anon','authenticated','service_role']){await db.exec('SET ROLE '+r);await assert.rejects(db.query('SELECT * FROM goodware.analyses'),/permission denied/);await db.exec('RESET ROLE');}ok('Data API denied');
+ console.log(`${checks} checks passed.`);
+}finally{await db.close();}

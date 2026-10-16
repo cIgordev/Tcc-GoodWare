@@ -1,0 +1,208 @@
+[
+  {
+    "id": "GW-JAVA-EXEC-001",
+    "languages": [
+      "java"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "MEDIUM",
+    "title": "API de execução de processos",
+    "pattern": "Runtime\\s*\\.\\s*getRuntime\\s*\\(\\s*\\)\\s*\\.\\s*exec\\s*\\(|new\\s+ProcessBuilder\\s*\\(",
+    "impact": "Entradas externas nos argumentos podem permitir execução de comandos.",
+    "recommendation": "Prefira APIs da linguagem; use executável fixo, lista de argumentos e validação estrita."
+  },
+  {
+    "id": "GW-JAVA-SQL-001",
+    "languages": [
+      "java"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "LOW",
+    "title": "Possível concatenação em SQL",
+    "pattern": "\\b(?:executeQuery|executeUpdate|prepareStatement)\\s*\\([^\\r\\n]{0,2000}\\+",
+    "impact": "Concatenação de dados não confiáveis pode alterar a consulta.",
+    "recommendation": "Use PreparedStatement com parâmetros vinculados."
+  },
+  {
+    "id": "GW-PY-EXEC-001",
+    "languages": [
+      "python"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "MEDIUM",
+    "title": "Possível execução por shell",
+    "pattern": "\\bos\\.(?:system|popen)\\s*\\(|\\bsubprocess\\.[a-z_]+\\s*\\([^\\r\\n]{0,2000}\\bshell\\s*=\\s*True",
+    "impact": "O shell pode interpretar metacaracteres provenientes de entrada externa.",
+    "recommendation": "Use subprocess com lista de argumentos e shell=False."
+  },
+  {
+    "id": "GW-JS-EXEC-001",
+    "languages": [
+      "javascript",
+      "typescript"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "LOW",
+    "title": "Possível execução de comando",
+    "pattern": "(?:\\bchild_process\\s*\\.\\s*|(?<![.\\w]))exec(?:Sync)?\\s*\\(",
+    "impact": "Uma chamada exec pode alcançar o shell; o nome isolado também pode ser outra função.",
+    "recommendation": "Revise a origem da função e prefira execFile com argumentos validados."
+  },
+  {
+    "id": "GW-PHP-EXEC-001",
+    "languages": [
+      "php"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "MEDIUM",
+    "title": "API de execução de comandos",
+    "pattern": "\\b(?:shell_exec|system|passthru|exec)\\s*\\(",
+    "impact": "Dados não confiáveis podem chegar ao interpretador de comandos.",
+    "recommendation": "Substitua por funções específicas e valide entradas."
+  },
+  {
+    "id": "GW-EVAL-001",
+    "languages": [
+      "javascript",
+      "typescript",
+      "python",
+      "php"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "MEDIUM",
+    "title": "Avaliação dinâmica de código",
+    "pattern": "\\beval\\s*\\(",
+    "impact": "Conteúdo externo pode ser interpretado como código.",
+    "recommendation": "Utilize parsers de dados e não interprete entradas como código."
+  },
+  {
+    "id": "GW-JAVA-DESERIALIZE-001",
+    "languages": [
+      "java"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "LOW",
+    "title": "Possível desserialização Java insegura",
+    "pattern": "\\b(?:readObject|readUnshared)\\s*\\(",
+    "impact": "Objetos de fontes não confiáveis podem acionar cadeias de desserialização.",
+    "recommendation": "Evite serialização nativa para dados externos e aplique ObjectInputFilter."
+  },
+  {
+    "id": "GW-PY-DESERIALIZE-001",
+    "languages": [
+      "python"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "MEDIUM",
+    "title": "Desserialização requer revisão",
+    "pattern": "\\b(?:pickle\\.(?:load|loads)|yaml\\.load)\\s*\\(",
+    "impact": "Pickle e loaders YAML inseguros podem instanciar objetos perigosos.",
+    "recommendation": "Não aceite pickle externo; para YAML use safe_load. Verifique se um loader seguro já foi configurado."
+  },
+  {
+    "id": "GW-PHP-DESERIALIZE-001",
+    "languages": [
+      "php"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "MEDIUM",
+    "title": "Desserialização PHP requer revisão",
+    "pattern": "\\bunserialize\\s*\\(",
+    "impact": "Objetos de entrada externa podem acionar métodos mágicos.",
+    "recommendation": "Prefira JSON e valide a estrutura dos dados."
+  },
+  {
+    "id": "GW-JS-DOM-001",
+    "languages": [
+      "javascript",
+      "typescript"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "MEDIUM",
+    "confidence": "LOW",
+    "title": "Inserção de HTML dinâmico",
+    "pattern": "\\.(?:innerHTML|outerHTML)\\s*=|document\\.write\\s*\\(",
+    "impact": "Dados externos podem gerar XSS se não forem sanitizados.",
+    "recommendation": "Use textContent para texto; sanitize HTML com biblioteca apropriada."
+  },
+  {
+    "id": "GW-TLS-001",
+    "languages": [
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "MEDIUM",
+    "title": "Validação TLS desabilitada",
+    "pattern": "\\bverify\\s*=\\s*False|\\brejectUnauthorized\\s*:\\s*false",
+    "impact": "Pode permitir interceptação de conexões.",
+    "recommendation": "Mantenha a validação de certificados habilitada."
+  },
+  {
+    "id": "GW-WEAK-HASH-001",
+    "languages": [
+      "java",
+      "python",
+      "javascript",
+      "typescript",
+      "php"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "LOW",
+    "confidence": "LOW",
+    "title": "Algoritmo criptográfico legado",
+    "pattern": "(?i)\\b(?:md5|sha1)\\s*\\(|getInstance\\s*\\(\\s*\"(?:MD5|SHA-1)\"",
+    "impact": "MD5/SHA-1 são inadequados para certas garantias criptográficas; usos não criptográficos podem ser legítimos.",
+    "recommendation": "Para integridade criptográfica use SHA-256; para senhas use função dedicada como Argon2id."
+  },
+  {
+    "id": "GW-SECRET-001",
+    "languages": [
+      "*"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "LOW",
+    "title": "Possível credencial literal",
+    "pattern": "(?i)[\"']?\\b(?:api[_-]?key|secret|password|passwd|token|access[_-]?key)[\"']?\\s*[:=]\\s*[\"'][^\"'\\r\\n]{8,}[\"']",
+    "impact": "Um valor sensível pode estar exposto no projeto.",
+    "recommendation": "Verifique sem divulgar o valor; revogue credenciais reais e use configuração externa."
+  },
+  {
+    "id": "GW-ENV-SECRET-001",
+    "languages": [
+      "config"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "LOW",
+    "title": "Possível credencial em configuração",
+    "pattern": "(?i)^\\s*(?:api[_-]?key|secret|password|passwd|token)\\s*=\\s*[^\\s\\x22\\x27]{8,}",
+    "impact": "Segredos incluídos no pacote podem ser compartilhados indevidamente.",
+    "recommendation": "Remova do versionamento e revogue valores reais."
+  },
+  {
+    "id": "GW-PRIVATE-KEY-001",
+    "languages": [
+      "*"
+    ],
+    "category": "POTENTIAL_VULNERABILITY",
+    "severity": "HIGH",
+    "confidence": "MEDIUM",
+    "title": "Marcador de chave privada",
+    "pattern": "-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----",
+    "impact": "Uma chave privada pode ter sido incluída no projeto.",
+    "recommendation": "Confirme se é material de teste; revogue chaves expostas e remova do pacote."
+  }
+]

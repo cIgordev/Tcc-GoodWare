@@ -1,0 +1,46 @@
+[
+  {
+    "id": "GW-OBFUSCATION-001",
+    "languages": [
+      "javascript",
+      "typescript",
+      "python",
+      "php"
+    ],
+    "category": "SUSPICIOUS_INDICATOR",
+    "severity": "MEDIUM",
+    "confidence": "MEDIUM",
+    "title": "Decodificação seguida de avaliação dinâmica",
+    "pattern": "\\b(?:eval|exec)\\s*\\(\\s*(?:atob|base64\\.[a-z_]+|base64_decode)\\s*\\(",
+    "impact": "A combinação pode ocultar código, mas não comprova malware.",
+    "recommendation": "Revise a origem do conteúdo sem executá-lo."
+  },
+  {
+    "id": "GW-POWERSHELL-ENCODED-001",
+    "languages": [
+      "powershell",
+      "shell",
+      "config"
+    ],
+    "category": "SUSPICIOUS_INDICATOR",
+    "severity": "MEDIUM",
+    "confidence": "LOW",
+    "title": "Comando PowerShell codificado",
+    "pattern": "(?i)\\bpowershell(?:\\.exe)?\\b[^\\r\\n]{0,1000}-(?:enc|encodedcommand)\\b",
+    "impact": "Comandos codificados dificultam a revisão; podem ser legítimos.",
+    "recommendation": "Inspecione os dados isoladamente, sem executar."
+  },
+  {
+    "id": "GW-ONION-001",
+    "languages": [
+      "*"
+    ],
+    "category": "SUSPICIOUS_INDICATOR",
+    "severity": "LOW",
+    "confidence": "LOW",
+    "title": "Referência a serviço onion",
+    "pattern": "(?i)https?://[a-z2-7]{16,56}\\.onion\\b",
+    "impact": "A referência merece contexto; o domínio onion não comprova atividade maliciosa.",
+    "recommendation": "Verifique a finalidade e procedência. Não visite automaticamente."
+  }
+]

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GoodWare — Entrar</title>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+  <main class="login-shell" id="main" tabindex="-1">
+
+    <!-- Painel de contexto da marca -->
+    <section class="login-context">
+      <div class="scan-graphic-wrap" aria-hidden="true">
+        <svg viewBox="0 0 480 640" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="dotgrid" width="22" height="22" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="1" fill="#232329" />
+            </pattern>
+            <clipPath id="scanClip">
+              <rect x="70" y="60" width="220" height="280" rx="4" />
+            </clipPath>
+            <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#7B61FF" stop-opacity="0.55" />
+              <stop offset="100%" stop-color="#7B61FF" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <rect width="480" height="640" fill="url(#dotgrid)" opacity="0.5" />
+
+          <!-- glow ambiente: sugere sistema ativo, sem chamar atenção -->
+          <circle class="ambient-glow" cx="330" cy="150" r="150" fill="url(#glow)" />
+
+          <!-- pilha de arquivos -->
+          <rect x="90" y="100" width="220" height="280" rx="4" fill="#15151B" stroke="#232329" />
+          <rect x="78" y="82" width="220" height="280" rx="4" fill="#101014" stroke="#232329" />
+          <rect x="66" y="64" width="220" height="280" rx="4" fill="#0B0B0D" stroke="#2A2A33" stroke-width="1.5" />
+
+          <!-- linhas de "código" dentro do arquivo -->
+          <g stroke="#232329" stroke-width="3" stroke-linecap="round">
+            <line x1="92" y1="110" x2="200" y2="110" />
+            <line x1="92" y1="128" x2="250" y2="128" />
+            <line x1="92" y1="146" x2="180" y2="146" />
+            <line x1="92" y1="164" x2="230" y2="164" />
+            <line x1="92" y1="182" x2="160" y2="182" />
+          </g>
+
+          <!-- marcador de achado -->
+          <circle cx="250" cy="164" r="5" fill="#FF6B78" />
+
+          <!-- linha de varredura -->
+          <g clip-path="url(#scanClip)">
+            <rect class="scan-line" x="66" y="64" width="220" height="3" fill="#9B87FF" />
+          </g>
+
+          <!-- selo de verificação -->
+          <g transform="translate(310, 340)">
+            <circle r="26" fill="#0B0B0D" stroke="#232329" />
+            <path d="M-9 0 L-2 8 L11 -9" stroke="#55D48A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="login-context-top">
+        <a href="index.html" class="brand-mark">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="7" height="7" rx="1.5" fill="#7B61FF" />
+            <rect x="11" y="2" width="7" height="7" rx="1.5" fill="#7B61FF" fill-opacity=".72" />
+            <rect x="2" y="11" width="7" height="7" rx="1.5" fill="#7B61FF" fill-opacity=".52" />
+            <rect x="11" y="11" width="7" height="7" rx="1.5" fill="#7B61FF" fill-opacity=".9" />
+          </svg>
+          GoodWare
+        </a>
+        <h2>Inspecione antes de confiar.</h2>
+        <p>Envie um pacote de projeto e receba um relatório explicável de riscos — sem executar uma linha do código enviado.</p>
+      </div>
+
+      <ul class="login-principles">
+        <li>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7 L5.5 10.5 L12 3" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          Nenhum arquivo enviado é executado durante a análise.
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7 L5.5 10.5 L12 3" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          Cada achado separa evidência de conclusão.
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7 L5.5 10.5 L12 3" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          Retenção mínima de dados dos projetos analisados.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Painel do formulário -->
+    <section class="login-form-panel">
+      <div class="login-form-inner">
+        <a href="index.html" class="brand-mark">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="7" height="7" rx="1.5" fill="#7B61FF" />
+            <rect x="11" y="2" width="7" height="7" rx="1.5" fill="#7B61FF" fill-opacity=".72" />
+            <rect x="2" y="11" width="7" height="7" rx="1.5" fill="#7B61FF" fill-opacity=".52" />
+            <rect x="11" y="11" width="7" height="7" rx="1.5" fill="#7B61FF" fill-opacity=".9" />
+          </svg>
+          GoodWare
+        </a>
+
+        <span class="badge badge-neutral">Sua conta GoodWare</span>
+        <h1>Entre para analisar.</h1>
+        <p class="text-muted">Seu histórico e seus relatórios ficam disponíveis somente para sua conta.</p>
+        <form id="authForm">
+          <label for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" maxlength="254" autocomplete="username" required>
+          <label for="password">Senha</label>
+          <input class="input" id="password" name="password" type="password" minlength="8" maxlength="128" autocomplete="current-password" required>
+          <button class="btn btn-primary btn-block" type="submit" value="login">Entrar</button>
+          <button class="btn btn-block" type="submit" value="signup">Criar conta</button>
+          <p id="authFeedback" role="status" aria-live="polite"></p>
+        </form>
+        <p class="login-footer-link">Ao criar uma conta, confirme seu email antes de entrar. A sessão dura até 30 minutos.</p>
+      </div>
+    </section>
+
+  </main>
+  <script src="js/login.js" defer></script>
+</body>
+</html>

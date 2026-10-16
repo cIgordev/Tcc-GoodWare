@@ -1,0 +1,38 @@
+Validação local, 14/10/2026 (America/Sao_Paulo).
+Horários de logs originais usam UTC+08:00.
+Não contém testes remotos.
+
+Maven / Java 21
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.836 s -- in br.com.goodware.GoodwareBackendApplicationTests
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.088 s -- in br.com.goodware.AnalysisApiTest
+[INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.142 s -- in br.com.goodware.engine.SafeZipReaderTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.125 s -- in br.com.goodware.engine.RuleModuleTest
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 s -- in br.com.goodware.engine.DependencyModuleTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in br.com.goodware.engine.SignatureServiceTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.128 s -- in br.com.goodware.PersistenceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.210 s -- in br.com.goodware.DatabaseFailureTest
+[INFO] Tests run: 82, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+[INFO] Total time:  8.400 s
+[INFO] Finished at: 2026-10-15T01:11:19+08:00
+
+PostgreSQL isolado
+PASS V1 and V2 executed on isolated PostgreSQL/WASM
+PASS RLS enabled on all four tables
+PASS Data API roles denied
+PASS Restricted backend can insert/read
+PASS Runtime cannot drop schema tables
+PASS Cross-analysis file reference rejected
+PASS Unsafe file path rejected
+PASS Rollback preserves consistency
+PASS Data survives database close/reopen
+PASS Parent delete cascades to files and findings
+10 checks passed; no remote database used.
+
+
+JAR JDBC/HTTP
+PASS HTTP uploads safe/vulnerable; malformed rejected; files and paginated history
+PASS same IDs recovered after backend restart; cascade deletion through HTTP
+PASS actual database outage returns sanitized HTTP 503
+
+SHA-256 JAR: 0450179ef3d75f3541ca66af32838f5542b556dac0e8ae574b6d5f8446331d45
