@@ -57,3 +57,21 @@ Maven indisponível por rede; javac/JUnit e recompilador offline usados com suce
 Guia atual: docs/AUTENTICACAO-E-IMPLANTACAO.md.
 Evidências atuais: docs/EVIDENCIAS-AUTENTICACAO.md.
 Documentos anteriores devem ser lidos como histórico quando divergirem deste guia.
+
+## Verificação de 16/10/2026 01:09 UTC
+- Nova implantação dep-db8nhqui0phs738bdrug iniciada após usuário salvar certificado.
+- O certificado passou da etapa anterior: a conexão alcançou a autenticação PostgreSQL.
+- Bloqueio atual confirmado: password authentication failed for user goodware_app. Corrigir GOODWARE_DB_PASSWORD diretamente no Render, com a senha desse usuário. Nenhuma senha lida ou alterada pelo assistente.
+- Site ainda não validado como operacional.
+
+## Credencial corrigida — 16/10/2026 01:13 UTC
+- Usuário corrigiu a credencial diretamente no Render. Deploy dep-db8njgnf3r2c73eo4i80 confirmado Live.
+- Nova instância 7stln registrou conexão PostgreSQL adicionada e Hikari Start completed, às 01:12:43 UTC. Bloqueio de senha anterior resolvido.
+- URL pública: https://goodware-fstf.onrender.com. Login/upload e isolamento remoto entre duas contas ainda requerem validação.
+- Verificação HTTP pública: página inicial, login e health retornaram 200; análises sem sessão retornaram 401; origem externa retornou 403.
+
+## Retomada do Render — 16/10/2026 11:03 UTC
+- Implantacao permanece Live no plano free. Nova instancia q6dvp iniciou e conectou ao Supabase com sucesso.
+- Primeiras requisicoes expiraram durante retomada apos inatividade; banco reconectado as 11:02:34 UTC. Origem externa rejeitada com 403.
+- Uso publico independe de PowerShell e do computador local: https://goodware-fstf.onrender.com.
+- Cadastro/login/upload autenticados e isolamento remoto entre duas contas ainda pendentes de validacao.
